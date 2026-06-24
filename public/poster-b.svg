@@ -1,0 +1,17 @@
+<svg width="720" height="1080" viewBox="0 0 720 1080" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="720" height="1080" rx="48" fill="#0B1120"/>
+  <rect width="720" height="1080" rx="48" fill="url(#paint0_linear)"/>
+  <circle cx="147" cy="240" r="130" fill="#FBBF24" fill-opacity="0.22"/>
+  <circle cx="592" cy="780" r="194" fill="#FB7185" fill-opacity="0.2"/>
+  <rect x="98" y="130" width="524" height="728" rx="40" fill="#020617" fill-opacity="0.62" stroke="rgba(255,255,255,0.12)"/>
+  <path d="M230 678C278 599 356 415 492 369C464 489 407 588 318 678H230Z" fill="#F8FAFC"/>
+  <path d="M366 341C393 341 415 319 415 292C415 265 393 243 366 243C339 243 317 265 317 292C317 319 339 341 366 341Z" fill="#F8FAFC"/>
+  <text x="102" y="934" fill="#F8FAFC" font-size="52" font-family="Arial, sans-serif" font-weight="700">Velvet Signal</text>
+  <text x="102" y="982" fill="#CBD5E1" font-size="28" font-family="Arial, sans-serif">When every clue feels personal.</text>
+  <defs>
+    <linearGradient id="paint0_linear" x1="84" y1="86" x2="640" y2="1024" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#1E1B4B"/>
+      <stop offset="1" stop-color="#0F172A"/>
+    </linearGradient>
+  </defs>
+</svg>

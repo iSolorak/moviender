@@ -1,0 +1,14 @@
+<svg width="720" height="1080" viewBox="0 0 720 1080" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="720" height="1080" rx="48" fill="#0F172A"/>
+  <rect width="720" height="1080" rx="48" fill="url(#paint0_linear)"/>
+  <circle cx="540" cy="220" r="150" fill="#8B5CF6" fill-opacity="0.28"/>
+  <circle cx="180" cy="820" r="190" fill="#22D3EE" fill-opacity="0.18"/>
+  <text x="88" y="920" fill="#F8FAFC" font-size="58" font-family="Arial, sans-serif" font-weight="700">Movieinder</text>
+  <text x="88" y="978" fill="#CBD5E1" font-size="30" font-family="Arial, sans-serif">Poster unavailable</text>
+  <defs>
+    <linearGradient id="paint0_linear" x1="70" y1="68" x2="648" y2="1012" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#111827"/>
+      <stop offset="1" stop-color="#020617"/>
+    </linearGradient>
+  </defs>
+</svg>
