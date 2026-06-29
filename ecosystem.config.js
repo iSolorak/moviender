@@ -2,7 +2,6 @@ module.exports = {
   apps: [
     {
       name: "movieinder",
-      cwd: "/home/solorak/pickflix",
       script: "npm",
       args: "start",
       env: {
