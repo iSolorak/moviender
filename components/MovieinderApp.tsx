@@ -9,7 +9,6 @@ import { MatchHistory } from "@/components/MatchHistory";
 import { MovieBattle } from "@/components/MovieBattle";
 import { MovieDNA } from "@/components/MovieDNA";
 import { ResetDialog } from "@/components/ResetDialog";
-import { SectionHeading } from "@/components/SectionHeading";
 import { StatisticsPanel } from "@/components/StatisticsPanel";
 import { useMovieinder } from "@/hooks/useMovieinder";
 
@@ -18,99 +17,78 @@ export function MovieinderApp() {
     useMovieinder();
 
   const favoriteGenre = useMemo(() => genreBreakdown[0]?.name ?? "Undecided", [genreBreakdown]);
+  const isInitialLoading = !isHydrated || (status === "loading" && !pair);
+  const isRefreshingPair = status === "loading" && Boolean(pair);
 
   return (
-    <main className="relative min-h-screen overflow-hidden bg-background text-white">
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,_rgba(124,58,237,0.15),_transparent_35%),radial-gradient(circle_at_bottom_right,_rgba(34,211,238,0.09),_transparent_25%)]" />
+    <main className="relative min-h-screen overflow-x-hidden overflow-y-visible bg-black text-white">
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top,_rgba(124,58,237,0.15),_transparent_35%),radial-gradient(circle_at_bottom_right,_rgba(34,211,238,0.09),_transparent_25%)]"
+      />
+      {isStarted ? (
+        <>
+          <div aria-hidden="true" className="match-screen-vignette absolute inset-0" />
+          <div aria-hidden="true" className="match-screen-texture absolute inset-0" />
+        </>
+      ) : null}
 
-      <div className="relative mx-auto flex max-w-7xl flex-col gap-8 px-4 py-6 sm:px-6 lg:px-8 lg:py-10">
-        <header className="flex flex-col gap-4 rounded-[2rem] border border-white/10 bg-white/5 px-6 py-5 backdrop-blur sm:flex-row sm:items-center sm:justify-between">
-          <div>
-            <p className="text-sm font-semibold uppercase tracking-[0.28em] text-highlight">Movieinder</p>
-            <p className="mt-2 text-sm text-slate-300">Discover your movie taste, one choice at a time.</p>
-          </div>
+      {!isStarted ? <LandingHero onStart={start} /> : null}
 
-          <div className="flex flex-wrap items-center gap-3">
-            <div className="rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm text-slate-200">
-              Matches completed: <span className="font-semibold text-white">{profile.totalMatches}</span>
-            </div>
-            {isStarted ? <ResetDialog onConfirm={reset} /> : null}
-          </div>
-        </header>
-
-        {!isStarted ? (
-          <>
-            <LandingHero onStart={start} />
-
-            <section className="grid gap-6 lg:grid-cols-[0.9fr_1.1fr]">
-              <div className="rounded-[2rem] border border-white/10 bg-card p-6 shadow-glow">
-                <SectionHeading
-                  badge="How it works"
-                  title="A faster way to learn your cinematic taste"
-                  description="Every head-to-head choice teaches the recommendation engine which genres, tones, and styles pull you in."
-                />
-
-                <div className="mt-8 space-y-4">
-                  {[
-                    ["01", "Choose between two movies.", "Simple, fast, and addictive from the first tap."],
-                    ["02", "Movieinder learns your preferences.", "Genre scores update instantly after every winner."],
-                    ["03", "Discover better recommendations.", "Top genres steer the next set of personalized pairings."],
-                  ].map(([step, title, copy]) => (
-                    <div key={step} className="rounded-3xl border border-white/10 bg-white/5 p-5">
-                      <p className="text-sm font-semibold text-highlight">{step}</p>
-                      <h3 className="mt-2 text-lg font-semibold text-white">{title}</h3>
-                      <p className="mt-2 text-sm leading-6 text-slate-300">{copy}</p>
-                    </div>
-                  ))}
+      {isStarted ? (
+        <>
+          <section className="relative min-h-screen overflow-y-visible px-4 py-4 sm:px-6 sm:py-6 lg:px-8 lg:py-10">
+            <div className="mx-auto flex max-w-7xl flex-col gap-4 sm:gap-6">
+              <header className="relative flex flex-col gap-2 rounded-[1.2rem] border border-white/8 bg-[#0f1319]/76 px-4 py-3 backdrop-blur-sm sm:gap-4 sm:rounded-[1.5rem] sm:px-6 sm:py-5 sm:flex-row sm:items-center sm:justify-between">
+                <div>
+                  <p className="text-[0.7rem] font-semibold uppercase tracking-[0.32em] text-slate-400">Movieinder</p>
+                  <p className="mt-1 text-xs text-slate-300 sm:mt-2 sm:text-sm">Discover your movie taste, one choice at a time.</p>
                 </div>
-              </div>
 
-              <div className="grid gap-6 sm:grid-cols-2">
-                {[
-                  ["Smart Recommendations", "Adaptive movie discovery built from your actual choices."],
-                  ["Movie DNA Analysis", "See favorite genres, percentages, and your personality label."],
-                  ["Instant Discovery", "Fast TMDB-powered browsing with fresh contenders every round."],
-                  ["No Sign-Up Required", "Your taste profile lives locally, privately, and instantly."],
-                ].map(([title, copy]) => (
-                  <div key={title} className="rounded-[2rem] border border-white/10 bg-card p-6 shadow-glow">
-                    <h3 className="text-lg font-semibold text-white">{title}</h3>
-                    <p className="mt-3 text-sm leading-6 text-slate-300">{copy}</p>
+                <div className="flex flex-wrap items-center gap-3">
+                  <div className="rounded-full border border-white/10 px-3 py-1.5 text-xs text-slate-300 sm:px-4 sm:py-2 sm:text-sm">
+                    Matches completed: <span className="font-semibold text-white">{profile.totalMatches}</span>
                   </div>
-                ))}
-              </div>
-            </section>
-          </>
-        ) : null}
-
-        {isStarted ? (
-          !isHydrated || status === "loading" ? (
-            <LoadingState />
-          ) : error ? (
-            <ErrorState message={error} onRetry={start} />
-          ) : pair ? (
-            <>
-              <MovieBattle pair={pair} onChoose={selectMovie} />
-
-              <section className="grid gap-6 xl:grid-cols-[1.1fr_0.9fr]">
-                <div className="space-y-6">
-                  <StatisticsPanel
-                    totalMatches={profile.totalMatches}
-                    viewedMovies={profile.viewedMovieIds.length}
-                    favoriteGenre={favoriteGenre}
-                    personalityLabel={personalityLabel}
-                    genresDiscovered={genreBreakdown.length}
-                  />
-                  <MovieDNA personalityLabel={personalityLabel} genreBreakdown={genreBreakdown} />
+                  <ResetDialog onConfirm={reset} />
                 </div>
+              </header>
 
-                <MatchHistory history={history} />
-              </section>
-            </>
-          ) : (
-            <ErrorState message="We couldn't create a movie matchup. Reset and try again." />
-          )
-        ) : null}
-      </div>
+              {isInitialLoading ? (
+                <div className="pt-2 sm:pt-4">
+                  <LoadingState />
+                </div>
+              ) : error && !pair ? (
+                <div className="pt-2 sm:pt-4">
+                  <ErrorState message={error} onRetry={start} />
+                </div>
+              ) : pair ? (
+                <MovieBattle pair={pair} onChoose={selectMovie} isRefreshing={isRefreshingPair} />
+              ) : (
+                <div className="pt-2 sm:pt-4">
+                  <ErrorState message="We couldn&apos;t create a movie matchup. Reset and try again." />
+                </div>
+              )}
+            </div>
+          </section>
+
+          <section className="relative overflow-y-visible px-4 py-12 sm:px-6 lg:px-8">
+            <div className="mx-auto grid max-w-7xl gap-6 xl:grid-cols-[1.1fr_0.9fr] xl:items-start">
+              <div className="space-y-6">
+                <StatisticsPanel
+                  totalMatches={profile.totalMatches}
+                  viewedMovies={profile.viewedMovieIds.length}
+                  favoriteGenre={favoriteGenre}
+                  personalityLabel={personalityLabel}
+                  genresDiscovered={genreBreakdown.length}
+                />
+                <MovieDNA personalityLabel={personalityLabel} genreBreakdown={genreBreakdown} />
+              </div>
+
+              <MatchHistory history={history} />
+            </div>
+          </section>
+        </>
+      ) : null}
     </main>
   );
 }

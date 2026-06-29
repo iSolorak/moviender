@@ -16,11 +16,11 @@ export function MoviePoster({ src, alt, priority, className = "" }: MoviePosterP
         src={src ?? FALLBACK_POSTER}
         alt={alt}
         fill
-        sizes="(max-width: 768px) 100vw, 50vw"
-        className="object-cover"
+        sizes="(max-width: 768px) 92vw, (max-width: 1280px) 22rem, 22rem"
+        className="object-cover transition duration-500 group-hover:scale-[1.02]"
         priority={priority}
       />
-      <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/25 to-transparent" />
+      <div className="absolute inset-0 bg-gradient-to-t from-slate-950/90 via-slate-950/18 to-transparent" />
     </div>
   );
 }

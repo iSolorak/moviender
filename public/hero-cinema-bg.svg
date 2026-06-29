@@ -1,0 +1,40 @@
+<svg width="1920" height="1080" viewBox="0 0 1920 1080" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1920" height="1080" fill="#040507"/>
+  <rect width="1920" height="1080" fill="url(#bg)"/>
+  <ellipse cx="920" cy="510" rx="960" ry="520" fill="url(#glow)" fill-opacity="0.72"/>
+  <ellipse cx="1590" cy="250" rx="310" ry="260" fill="#8B5CF6" fill-opacity="0.14"/>
+  <ellipse cx="330" cy="810" rx="360" ry="310" fill="#22D3EE" fill-opacity="0.08"/>
+  <path d="M0 862C178 773 332 728 476 714C663 696 786 734 949 690C1123 643 1241 533 1431 484C1603 439 1750 447 1920 514V1080H0V862Z" fill="url(#horizon)" fill-opacity="0.72"/>
+  <path d="M0 934C136 860 268 819 427 805C612 789 782 837 977 792C1125 757 1269 667 1438 622C1601 578 1756 583 1920 652V1080H0V934Z" fill="#090B10" fill-opacity="0.92"/>
+  <path d="M616 197C708 245 801 320 892 426C818 417 738 410 658 424C581 437 502 468 434 519C463 422 514 343 584 277C594 266 605 256 616 247V197Z" fill="url(#light)" fill-opacity="0.24"/>
+  <path d="M1437 191C1339 270 1248 365 1166 478C1248 453 1324 438 1406 444C1498 451 1590 489 1666 545C1630 430 1571 332 1492 253C1474 235 1456 220 1437 206V191Z" fill="url(#lightRight)" fill-opacity="0.2"/>
+  <rect width="1920" height="1080" fill="url(#vignette)"/>
+  <defs>
+    <linearGradient id="bg" x1="960" y1="0" x2="960" y2="1080" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#11131A"/>
+      <stop offset="0.45" stop-color="#090B10"/>
+      <stop offset="1" stop-color="#020304"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(920 510) rotate(90) scale(520 960)">
+      <stop stop-color="#3B4252"/>
+      <stop offset="0.44" stop-color="#151A22"/>
+      <stop offset="1" stop-color="#040507" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="horizon" x1="960" y1="484" x2="960" y2="1080" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#161A22"/>
+      <stop offset="1" stop-color="#050608"/>
+    </linearGradient>
+    <linearGradient id="light" x1="663" y1="197" x2="663" y2="519" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#F8FAFC"/>
+      <stop offset="1" stop-color="#F8FAFC" stop-opacity="0"/>
+    </linearGradient>
+    <linearGradient id="lightRight" x1="1416" y1="191" x2="1416" y2="545" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#F8FAFC"/>
+      <stop offset="1" stop-color="#F8FAFC" stop-opacity="0"/>
+    </linearGradient>
+    <radialGradient id="vignette" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(960 540) rotate(90) scale(720 1220)">
+      <stop offset="0.58" stop-color="#000000" stop-opacity="0"/>
+      <stop offset="1" stop-color="#000000" stop-opacity="0.62"/>
+    </radialGradient>
+  </defs>
+</svg>
