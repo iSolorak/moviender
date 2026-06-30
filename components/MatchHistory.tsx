@@ -4,11 +4,11 @@ import { MoviePoster } from "./MoviePoster";
 
 type MatchHistoryProps = {
   history: Array<{
-    movieId: number;
+    movieId: string;
     selectedAt: string;
     title: string;
-    posterPath: string | null;
-    releaseYear: string;
+    posterUrl?: string;
+    year?: string;
   }>;
 };
 
@@ -30,11 +30,11 @@ export function MatchHistory({ history }: MatchHistoryProps) {
               className="flex items-center gap-4 rounded-3xl border border-white/10 bg-white/5 p-3"
             >
               <div className="relative h-20 w-14 shrink-0 overflow-hidden rounded-2xl">
-                <MoviePoster src={entry.posterPath} alt={entry.title} />
+                <MoviePoster src={entry.posterUrl} alt={entry.title} />
               </div>
               <div className="min-w-0">
                 <p className="truncate text-sm font-semibold text-white">{entry.title}</p>
-                <p className="mt-1 text-xs text-slate-400">{entry.releaseYear}</p>
+                <p className="mt-1 text-xs text-slate-400">{entry.year ?? "Year unknown"}</p>
                 <p className="mt-2 text-xs text-slate-300">Selected {formatDateTime(entry.selectedAt)}</p>
               </div>
             </div>

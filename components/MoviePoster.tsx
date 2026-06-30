@@ -3,7 +3,7 @@ import Image from "next/image";
 import { FALLBACK_POSTER } from "@/lib/constants";
 
 type MoviePosterProps = {
-  src: string | null;
+  src?: string | null;
   alt: string;
   priority?: boolean;
   className?: string;

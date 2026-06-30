@@ -22,7 +22,7 @@ export function shuffleArray<T>(items: T[]) {
   return copy;
 }
 
-export function uniqueById<T extends { id: number }>(items: T[]) {
+export function uniqueById<T extends { id: string | number }>(items: T[]) {
   return Array.from(new Map(items.map((item) => [item.id, item])).values());
 }
 

@@ -1,7 +1,7 @@
 type MovieDNAProps = {
   personalityLabel: string;
   genreBreakdown: Array<{
-    genreId: number;
+    genreId: string;
     name: string;
     score: number;
     percent: number;

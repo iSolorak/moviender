@@ -1,4 +1,4 @@
-export type Genre = {
+export type TmdbGenre = {
   id: number;
   name: string;
 };
@@ -11,33 +11,36 @@ export type TmdbMovie = {
   poster_path: string | null;
   overview: string;
   genre_ids?: number[];
-  genres?: Genre[];
+  genres?: TmdbGenre[];
   popularity?: number;
 };
 
 export type Movie = {
-  id: number;
+  id: string;
   title: string;
-  releaseYear: string;
-  rating: number;
-  posterPath: string | null;
-  overview: string;
-  genres: Genre[];
+  year?: string;
+  rating?: number;
+  posterUrl?: string;
+  overview?: string;
+  genres: string[];
+  source: "tmdb" | "mooremetrics";
 };
 
+export type MovieProviderName = "tmdb" | "mooremetrics";
+
 export type HistoryEntry = {
-  movieId: number;
+  movieId: string;
   selectedAt: string;
   title: string;
-  posterPath: string | null;
-  releaseYear: string;
+  posterUrl?: string;
+  year?: string;
 };
 
 export type MovieProfile = {
-  viewedMovieIds: number[];
-  selectedMovieIds: number[];
+  viewedMovieIds: string[];
+  selectedMovieIds: string[];
   history: HistoryEntry[];
-  genreScores: Record<number, number>;
+  genreScores: Record<string, number>;
   totalMatches: number;
 };
 

@@ -25,7 +25,7 @@ export function MovieCard({ movie, emphasis = "left", onChoose }: MovieCardProps
       ) : null}
 
       <MoviePoster
-        src={movie.posterPath}
+        src={movie.posterUrl}
         alt={movie.title}
         priority
         className={`h-full ${emphasis === "right" ? "sm:order-2" : ""} sm:aspect-[0.78]`}
@@ -38,20 +38,22 @@ export function MovieCard({ movie, emphasis = "left", onChoose }: MovieCardProps
               {movie.title}
             </p>
             <p className="mt-1 text-[0.63rem] uppercase tracking-[0.14em] text-slate-400 sm:text-[0.78rem] sm:tracking-[0.18em]">
-              {movie.releaseYear} · TMDB {movie.rating}/10
+              {[movie.year ?? "Year unknown", movie.rating !== undefined ? `${movie.source.toUpperCase()} ${movie.rating}/10` : movie.source.toUpperCase()]
+                .filter(Boolean)
+                .join(" · ")}
             </p>
           </div>
           <div className="rounded-full border border-white/10 px-2 py-1 text-[0.55rem] font-medium uppercase tracking-[0.18em] text-slate-300 sm:px-2.5 sm:text-[0.62rem] sm:tracking-[0.22em]">
-            {movie.genres[0]?.name ?? "Featured"}
+            {movie.genres[0] ?? "Featured"}
           </div>
         </div>
 
-        <p className="hidden text-sm leading-6 text-slate-300/92 sm:line-clamp-3 sm:block">{movie.overview}</p>
+        <p className="hidden text-sm leading-6 text-slate-300/92 sm:line-clamp-3 sm:block">{movie.overview ?? "No synopsis available yet."}</p>
 
         <div className="flex flex-wrap gap-1 sm:gap-1.5">
           {movie.genres.slice(0, 2).map((genre) => (
-            <span key={genre.id} className="rounded-full border border-white/8 px-2 py-0.5 text-[0.56rem] uppercase tracking-[0.12em] text-slate-400 sm:px-2.5 sm:py-1 sm:text-[0.68rem] sm:tracking-[0.14em]">
-              {genre.name}
+            <span key={genre} className="rounded-full border border-white/8 px-2 py-0.5 text-[0.56rem] uppercase tracking-[0.12em] text-slate-400 sm:px-2.5 sm:py-1 sm:text-[0.68rem] sm:tracking-[0.14em]">
+              {genre}
             </span>
           ))}
         </div>

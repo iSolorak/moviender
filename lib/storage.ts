@@ -18,10 +18,12 @@ export function readProfile() {
     return {
       ...INITIAL_PROFILE,
       ...parsed,
-      genreScores: parsed.genreScores ?? {},
+      genreScores: Object.fromEntries(
+        Object.entries(parsed.genreScores ?? {}).map(([key, value]) => [String(key), Number(value) || 0]),
+      ),
       history: parsed.history ?? [],
-      selectedMovieIds: parsed.selectedMovieIds ?? [],
-      viewedMovieIds: parsed.viewedMovieIds ?? [],
+      selectedMovieIds: (parsed.selectedMovieIds ?? []).map((id) => String(id)),
+      viewedMovieIds: (parsed.viewedMovieIds ?? []).map((id) => String(id)),
     };
   } catch {
     return INITIAL_PROFILE;
