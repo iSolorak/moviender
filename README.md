@@ -112,3 +112,4 @@ public/
 - Expand Movie DNA with director and decade preferences
 - Add richer MooreMetrics metadata normalization if more fields become available
 - Add shareable taste cards for social posting
+- More Advanced Recomendation
